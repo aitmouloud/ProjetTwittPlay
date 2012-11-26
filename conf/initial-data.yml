@@ -1,0 +1,17 @@
+# Users
+#Users:
+
+#- !!models.UserAccount
+ #    id:       1
+ #    mail:     aicha@sample.com
+ #    nickname: aicha
+ #    password: secret
+
+
+#Message:   
+messages:
+ - !!models.Message
+        id:       1
+        label:     Message de base   
+        user:    !!models.UserAccount
+                        id: 1

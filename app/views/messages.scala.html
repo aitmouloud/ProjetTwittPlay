@@ -1,0 +1,16 @@
+@(messages:List[Message], messageForm: Form[Message])
+
+@import helper._
+
+@main("See All Messages") {
+    
+ <h1>@messages.size() message(s)</h1>
+Bonjour : 
+    <ul>
+        @for(message <- messages) {
+            <li>
+                @message.getLabel                
+            </li>
+        }
+    </ul>
+    }

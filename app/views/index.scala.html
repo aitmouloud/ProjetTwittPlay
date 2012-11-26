@@ -1,7 +1,33 @@
-@(message: String)
+@(form: Form[Application.Login])
 
-@main("Welcome to Play 2.0") {
-    
-    @play20.welcome(message, style = "Java")
-    
-}
+        
+        @helper.form(routes.Application.authenticate) {
+            <fieldset>
+            <legend><h1>Sign in</h1></legend>
+            
+            @if(form.hasGlobalErrors) {
+                <p class="error">
+                    @form.globalError.message
+                </p>
+            }
+            
+            @if(flash.contains("success")) {
+                <p class="success">
+                    @flash.get("success")
+                </p>
+            }
+            <div>
+            <p>
+                <input type="text" name="identifier" placeholder="Identifier" value="@form("identifier").value">
+            </p>
+            <p>
+                <input type="password" name="password" placeholder="Password">
+            </p>
+            <p>
+                <button type="submit">Login</button>
+            </p>
+            </div>
+            </fieldset>
+        }
+
+

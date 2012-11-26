@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET      /                 controllers.Application.index()
+GET      /                 controllers.Application.login()
                                 
 
 # Messages
@@ -15,4 +15,5 @@ GET 	/messages          controllers.Application.messages()
 GET 	/assets/*file       controllers.Assets.at(path="/public", file)
 
 # Authentication
+POST    /login                              controllers.Application.authenticate()
 

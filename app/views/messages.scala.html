@@ -1,16 +1,40 @@
-@(messages:List[Message], messageForm: Form[Message])
+@(messages: List[Message], messageForm: Form[Message])
 
 @import helper._
 
-@main("See All Messages") {
+@main("Voir tous les messages") {
     
  <h1>@messages.size() message(s)</h1>
 Bonjour : 
     <ul>
-        @for(message <- messages) {
+        @for(Message <- messages) {
             <li>
-                @message.getLabel                
+                @Message.getLabel  person : @Message.getUser.getNickname 
+                
+                @form(routes.Application.deleteMessage(Message.getId)) {
+                    <input type="submit" value="Delete">
+                }
             </li>
         }
     </ul>
-    }
+  
+    <h2>Add a new message</h2>
+    
+    @form(routes.Application.newMessage()) {
+        
+        Message:
+        @inputText(messageForm("label"), '_label -> "Contenu du message")
+   
+  
+        User:
+        @select(messageForm("user.id"), 
+        		options(UserAccount.options()),
+        		'_default -> "--- Choosissez un utilisateur ---",
+                '_label -> "User",
+                '_error -> messageForm("user").error.map(_.withMessage("Please select your userAccount"))
+        		)
+        <input type="submit" value="Create">
+        
+    }   
+    
+}

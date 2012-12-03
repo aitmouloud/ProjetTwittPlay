@@ -24,9 +24,25 @@ public static Result index() {
   }
   
 public static Result messages() {
-	
-			return ok(views.html.messages.render(Message.findAll(), messageForm));	
+	List<Message> mmessages = Message.findAll();
+	return ok(messages.render(Message.findAll(), messageForm));	
 		}
+public static Result newMessage() {
+	Form<Message> filledForm = messageForm.bindFromRequest();
+	if(filledForm.hasErrors()) {
+		return badRequest(
+				messages.render(Message.findAll(), filledForm)
+				);
+	} else {
+		Message.create(filledForm.get());
+		return redirect(routes.Application.messages());  
+	}
+}
+
+public static Result deleteMessage(Long id) {
+	Message.delete(id);
+	return redirect(routes.Application.messages());
+}
 //-- Authentication
 
 public static class Login {

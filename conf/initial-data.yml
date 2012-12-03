@@ -1,11 +1,11 @@
 # Users
-#Users:
+users:
 
-#- !!models.UserAccount
- #    id:       1
- #    mail:     aicha@sample.com
- #    nickname: aicha
- #    password: secret
+- !!models.UserAccount
+     id:       1
+     mail:     aicha@sample.com
+     nickname: aicha
+     password: secret
 
 
 #Message:   

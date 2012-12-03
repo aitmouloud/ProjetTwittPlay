@@ -8,7 +8,8 @@ GET      /                 controllers.Application.login()
 
 # Messages
 GET 	/messages          controllers.Application.messages()
-
+POST    /messages                  controllers.Application.newMessage()
+POST    /messages/:id/delete       controllers.Application.deleteMessage(id: Long)
 
 
 # Map static resources from the /public folder to the /assets URL path

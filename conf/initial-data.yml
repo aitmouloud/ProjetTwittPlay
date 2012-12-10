@@ -6,6 +6,13 @@ users:
      mail:     aicha@sample.com
      nickname: aicha
      password: secret
+    
+- !!models.UserAccount 
+     id:       2
+     mail:     kaki@sample.com
+     nickname: kaki
+     password: secret
+     
 
 
 #Message:   

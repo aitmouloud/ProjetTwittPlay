@@ -3,11 +3,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+
 
 import play.data.validation.Constraints.Email;
 import play.data.validation.Constraints.Required;
@@ -27,6 +30,8 @@ public class UserAccount extends Model
 	private String nickname;
 	@Required
 	private String password;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	private List<Message> messages;
 	
 	public Long getId()
 	{
@@ -67,6 +72,11 @@ public class UserAccount extends Model
 	{
 		password = _password ;
 	}
+	
+	public List<Message> getMessages()
+	{
+		return messages;
+	}
 
 	public static Finder<Long,UserAccount> find = new Finder( Long.class, UserAccount.class );
 	
@@ -74,7 +84,12 @@ public class UserAccount extends Model
 	{
 		return find.all();
 	}
-
+	///////////////////////////////////////////////
+	public static void create(UserAccount user) 
+	{
+		user.save();
+	}
+	///////////////////////////////////////////////
 	public static Map<String,String> options() {
         List<UserAccount> users = findAll();
         LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
@@ -110,7 +125,7 @@ public class UserAccount extends Model
             .findUnique();
     }
 
-/**
+    /**
      * Authenticate a User.
      */
     public static UserAccount authenticateNickname(String nickname, String password) {
@@ -119,5 +134,10 @@ public class UserAccount extends Model
             .eq("password", password)
             .findUnique();
     }
+
+    public static UserAccount findById(Long id) 
+	{
+		return find.where().eq("id", id).findUnique();
+	}
 
 }

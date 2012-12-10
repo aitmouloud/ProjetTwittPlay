@@ -15,14 +15,10 @@ public class Application extends Controller {
 	static Form<UserAccount> userForm = form(UserAccount.class);
 	static Form<Application.Login> loginForm=form(Login.class);
   
-/*public static Result index() {
-	  return redirect(routes.Application.index());
-}*/
-
 public static Result index() {
     return ok(index.render(loginForm));
   }
-  
+
 public static Result messages() {
 	List<Message> mmessages = Message.findAll();
 	return ok(messages.render(Message.findAll(), messageForm));	
@@ -43,6 +39,30 @@ public static Result deleteMessage(Long id) {
 	Message.delete(id);
 	return redirect(routes.Application.messages());
 }
+
+public static Result findMessageById(Long id){
+	List<Message>m=UserAccount.findById(id).getMessages();
+	return ok(messages.render(m, messageForm));	
+}
+//--creation de comptes
+
+public static Result inscriptions() {
+	List<UserAccount> minscriptionss = UserAccount.findAll();
+	return ok(inscriptions.render(UserAccount.findAll(), userForm));	
+}
+public static Result newUser() {
+	Form<UserAccount> filledForm = userForm.bindFromRequest();
+	if(filledForm.hasErrors()) {
+		return badRequest(
+				inscriptions.render(UserAccount.findAll(), filledForm)
+				);
+	} else {
+		UserAccount.create(filledForm.get());
+		return redirect(routes.Application.login());  
+	}
+}
+
+
 //-- Authentication
 
 public static class Login {
@@ -83,9 +103,19 @@ currentUser = UserAccount.findByEmail(identifier);
 else currentUser = UserAccount.findByNickname(identifier);
             session("nickname", currentUser.getNickname());
             return redirect(
-                routes.Application.messages()
+            		routes.Application.findMessageById(currentUser.getId())
             );
         }
+    }
+    /**
+     * Logout and clean the session.
+     */
+    public static Result logout() {
+        session().clear();
+        flash("success", "You've been logged out");
+        return redirect(
+            routes.Application.login()
+        );
     }
 
 

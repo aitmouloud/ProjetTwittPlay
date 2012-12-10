@@ -2,34 +2,35 @@
 
         
         @helper.form(routes.Application.authenticate) {
-        @main("See All Messages") {
+        @main("Bienvenue sur TwittPlay") {
             
             <h1>Sign in</h1>
             
-            @if(form.hasGlobalErrors) {
-                <p class="error">
-                    @form.globalError.message
-                </p>
-            }
-            
-            @if(flash.contains("success")) {
-                <p class="success">
-                    @flash.get("success")
-                </p>
-            }
-            <div>
+     		<div>
             <p>
                 <input type="text" name="identifier" placeholder="Identifier" value="@form("identifier").value">
             </p>
             <p>
                 <input type="password" name="password" placeholder="Password">
             </p>
+            
             <p>
                 <button type="submit">Login</button>
             </p>
-            </div>
+            
+            
+            
+            
+      
             
         }
-        }
+      }
 
-
+		 @helper.form(routes.Application.inscriptions) {
+		 		<h5>Vous n'etes pas encore inscrit</h5>
+		 		
+        		<p>
+                	<button type="submit">Inscription</button>
+            	</p>
+           </div>
+          }

@@ -2,10 +2,11 @@
 
 @import helper._
 
-@main("Voir tous les messages") {
-    
+@main("Vos messages") {
+   
+   Bonjour : @(session.get("nickname")) 
  <h1>@messages.size() message(s)</h1>
-Bonjour : 
+
     <ul>
         @for(Message <- messages) {
             <li>
@@ -36,5 +37,15 @@ Bonjour :
         <input type="submit" value="Create">
         
     }   
+    <div class="pull-right">
+                    			<ul class="nav">
+                    				<li>
+                    				@form(routes.Application.logout()){
+                    				 <input type="submit" value="Deconnexion">
+                    				}
+                    				</li>
+                    			</ul>
+                </div>
     
 }
+        

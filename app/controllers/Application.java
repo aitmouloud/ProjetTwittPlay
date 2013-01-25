@@ -25,9 +25,9 @@ List<Message> messages = currentUser.getMessages();
 return ok(views.html.messages.render(messages, messageForm));
 }
 
-public static Result mesmessages() {
+public static Result lesmessages() {
 	List<Message> nmessages = Message.findAll();
-	return ok(mesmessages.render(Message.findAll(), messageForm));	
+	return ok(lesmessages.render(Message.findAll(), messageForm));	
 }		
 		
 

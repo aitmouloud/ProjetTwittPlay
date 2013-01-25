@@ -1,0 +1,44 @@
+@(lesmessages: List[Message], messageForm: Form[Message])
+
+@import helper._
+
+@main("TwittPlay : Fil des messages") {
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="fill">
+			<div class="container">
+				<div class="pull-left">
+					<ul class="nav">
+						<li class="active"><a href="#">TwittPlay</a></li>
+					</ul>
+				</div>
+ 				<div class="pull-right">
+					<ul class="nav">
+						<li><a href="/messages">Mes messages</a></li>
+						<li><a href="/lesmessages">Fil des messages</a></li> 
+						<li><a href="/logout">Déconnexion</a></li>  
+					</ul>
+				</div>
+		  </div>
+		</div>
+	</div> 
+	<div class="hero-unit">
+					<h1> <center> @(session.get("nickname")) </center></h1>
+	</div>  
+	<div>
+        @for(Message <- lesmessages) {
+        	<div>
+				
+				<ul class="breadcrumb">
+					<div>
+					<h5 class="pull-left">@Message.getUser.getNickname </h5></br>
+					</div><br/>
+    				<div>
+    				<h8 class="pull-left">@Message.getLabel</div><br/>
+    				<div>
+    				<small class="pull-right"> à Montpellier, le : @Message.getDate </small>
+    				</div>
+    			</ul>
+			</div>
+		}
+	</div>	
+}        

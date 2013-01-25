@@ -1,0 +1,33 @@
+@(inscriptions: List[UserAccount], userForm: Form[UserAccount])
+
+@import helper._
+
+@main("TwittPlay : inscription") {
+            <div class="hero-unit">
+					<h1> <center> Inscription </center></h1>
+			</div>  
+@form(routes.Application.newUser()) {
+
+            <div>
+            <p>
+            	 <span class="label">Nom</span><br/>
+            	 <br/>
+        		 <span><input  type="text" placeholder="Entrez votre nom" name="nickname"></span>
+            </p>
+            <p>
+            	<span class="label">Mot de passe</span><br/>
+            	<br/>
+        		 <span><input  type="text" placeholder="Entrez un mot de passe" name="password"></span>
+            </p>
+             <p>
+             	<span class="label">Adresse Mail</span><br/>
+             	<br/>
+        		 <span><input  type="text" placeholder="Entrez votre adresse mail" name="mail"></span>
+            </p>
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary" value="Valider">
+            </div>
+            
+         }
+      }

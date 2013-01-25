@@ -1,0 +1,48 @@
+@(messages: List[Message], messageForm: Form[Message])
+
+@import helper._
+
+@main("TwittPlay: Vos messages") {
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="fill">
+			<div class="container">
+				<div class="pull-left">
+					<ul class="nav">
+						<li class="active"><a href="#">TwittPlay</a></li>
+					</ul>
+				</div>
+ 				<div class="pull-right">
+					<ul class="nav">
+						<li><a href="/messages">Mes messages</a></li>
+						<li><a href="/lesmessages">Fil des messages</a></li> 
+						<li><a href="/logout">Déconnexion</a></li>
+					</ul>
+				</div>
+		  </div>
+		</div>
+	</div>
+	<div class="hero-unit">
+					<h1> <center> @(session.get("nickname")) </center></h1>
+			</div>  
+    <ul>
+        @for(Message <- messages) {
+            	<ul class="breadcrumb">
+            		@form(routes.Application.deleteMessage(Message.getId)) {
+                    <input class="pull-right" type="submit" value="Supprimer">
+                    }
+                	<h5 class="pull-left"> @Message.getLabel </h5><br/>    	
+                	<small class=pull-right> à Montpellier, le : @Message.getDate </small></br>
+                
+                </ul>
+        }
+    </ul>
+  
+    <h2> Exprimez vous </h2>
+    
+		@form(routes.Application.newMessage()) {
+			<input class="input-xxlarge" type="text" placeholder="Ecrivez ici" name="label">
+			<button type="submit" class="btn btn-primary"> Publier </button>
+        
+    }   
+}
+        

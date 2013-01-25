@@ -6,6 +6,7 @@
 create table message (
   id                        bigint auto_increment not null,
   label                     varchar(255),
+  date                      timestamp,
   user_id                   bigint,
   constraint pk_message primary key (id))
 ;

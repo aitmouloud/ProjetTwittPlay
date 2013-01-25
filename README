@@ -1,4 +1,60 @@
-This is your new Play 2.0 application
+Projet Technologies du web avancées:
 =====================================
+Service de flux de notifications dans un reseau social et son client lourd
 
+Membres du groupe:
+-	Abdelkrim  AIT MOULOUD
+-	Ourdia  MEZZOU
+-	Aicha  TAZOUTI
+-	Taoufik  LAHDIDIOUI
+
+
+Les histoires utilisateurs (US):
+---------------------------
+
+En tant qu'utilisateur, je m'inscris sur le réseau social:
+
+-	je renseigne le champ “Adresse mail” avec une adresse mail valide.
+-	je renseigne le champ  “Mot de passe”.
+-	je renseigne le champ “Nickname”.
+-	je cilique sur le bouton “Inscription” afin de soumettre mon inscription.
+
+-	Si mon adresse mail n’est pas déjà utilisée, mon compte est crée et je suis invité à me connecter à mon espace personnel, à la page d’authentification.
+
+-	Si mon adresse mail a déjà été utilisée ou elle n’est pas valide, un message d’erreur s’affiche et je suis invité à refaire mon inscription.
+
+
+
+En tant qu’utilisateur, je me connecte à mon compte:
+
+-	je renseigne le champs “login” avec mon identifiant.
+-	je renseigne le champ “mot de passe”.
+-	je clique sur le bouton “Connexion” afin de me connecter et accéder à mon espace personnel.
+
+-	Si mes identifiants sont correctes et que mon compte existe (est déjà créer) je suis redirigé sur ma page personnelle;
+
+-	Si les identifiants utilisés sont incorrecte je suis invité à les retaper ou à m'inscrire si je n’ai pas encore d’espace personnel.
+
+
+En tant qu’utilisateur, je peux poster un message à partir de mon espace personnel.
+
+-	je me connecte sur mon compte personnel
+-	je renseigne le champ du message à poster
+-	je clique sur le bouton "poster"
+
+-	Si mon message est créé il s’affiche sur la page de mes messages ainsi que sur la page du fil des messages.
+
+-	Si mon message n’est pas crée, rien ne s’affiche.
+
+
+En tant qu’utilisateur, je peux supprimer un message que j'ai posté sur mon espace personnel.
+-	je me connecte sur mon espace personnel.
+-	je clique sur le bouton "supprimer" se trouvant à coté du message à supprimer
+
+En tant qu’utilisateur, je peux consulter les messages des autres utilisateurs qui ont posté sur la page du fil des messages.
+
+
+
+
+========================================================================
 This file will be packaged with your application, when using `play dist`.

@@ -1,36 +1,43 @@
 @(form: Form[Application.Login])
-
-        
+     
         @helper.form(routes.Application.authenticate) {
+        @if(flash.contains("success")) {
+                <p class="success">
+                    @flash.get("success")
+                </p>
+            }
         @main("Bienvenue sur TwittPlay") {
-            
-            <h1>Sign in</h1>
-            
+           	<div class="hero-unit">
+					<h1> <center> Bienvenu sur Twitt Play </center></h1>
+			</div>          
+            <h2>Déjà membre ?</h2>
      		<div>
-            <p>
-                <input type="text" name="identifier" placeholder="Identifier" value="@form("identifier").value">
-            </p>
-            <p>
-                <input type="password" name="password" placeholder="Password">
-            </p>
-            
-            <p>
-                <button type="submit">Login</button>
-            </p>
-            
-            
-            
-            
-      
-            
+     			<fieldset> 		
+     				<div class="clearfix">
+            			<p>
+                			<input type="text" name="identifier" placeholder="votre identifiant" value="@form("identifier").value">
+            			</p>
+            		</div>           		
+            		<div class="clearfix">
+            			<p>
+               			 	<input type="password" name="password" placeholder="votre mot de passe">
+            			</p>
+                    </div>                    
+	
+           			<div class="clearfix">
+           			 	<p>
+               				<button type="submit" class="btn btn-primary">Login</button>
+            			</p> 
+            		</div>
+            	</fieldset>                
         }
       }
-
 		 @helper.form(routes.Application.inscriptions) {
-		 		<h5>Vous n'etes pas encore inscrit</h5>
-		 		
-        		<p>
-                	<button type="submit">Inscription</button>
-            	</p>
+		 	<center>
+		 		<h2>Vous n'etes pas encore inscrit ?</h2>
+        			<p>
+                		<button type="submit" class="btn btn-primary">Inscription</button>
+            		</p>
+            </center>
            </div>
           }

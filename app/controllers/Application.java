@@ -20,24 +20,43 @@ public static Result index() {
   }
 
 public static Result messages() {
-	List<Message> mmessages = Message.findAll();
-	return ok(messages.render(Message.findAll(), messageForm));	
-		}
+UserAccount currentUser = UserAccount.findByNickname(session().get("nickname"));
+List<Message> messages = currentUser.getMessages();
+return ok(views.html.messages.render(messages, messageForm));
+}
+
+public static Result mesmessages() {
+	List<Message> nmessages = Message.findAll();
+	return ok(mesmessages.render(Message.findAll(), messageForm));	
+}		
+		
+
 public static Result newMessage() {
 	Form<Message> filledForm = messageForm.bindFromRequest();
-	if(filledForm.hasErrors()) {
+
+	if (filledForm.hasErrors()) {
 		return badRequest(
 				messages.render(Message.findAll(), filledForm)
 				);
-	} else {
-		Message.create(filledForm.get());
-		return redirect(routes.Application.messages());  
+	}
+	else {
+	Message msg = filledForm.get();
+	UserAccount currentUser = UserAccount.findByNickname(session().get("nickname"));
+	Logger.info(currentUser.toString());
+	msg.setUser(currentUser);
+	Message.create(msg);
+	Logger.info(msg.toString());
+	return redirect(routes.Application.messages());
 	}
 }
 
 public static Result deleteMessage(Long id) {
+	String identifier = session("nickname")  ;
+	UserAccount currentUser ;
+	currentUser = UserAccount.findByNickname(identifier);
+	            session("nickname", currentUser.getNickname());
 	Message.delete(id);
-	return redirect(routes.Application.messages());
+	return redirect(routes.Application.messages()); 
 }
 
 public static Result findMessageById(Long id){
@@ -103,16 +122,13 @@ currentUser = UserAccount.findByEmail(identifier);
 else currentUser = UserAccount.findByNickname(identifier);
             session("nickname", currentUser.getNickname());
             return redirect(
-            		routes.Application.findMessageById(currentUser.getId())
-            );
+            		routes.Application.messages());
         }
     }
-    /**
-     * Logout and clean the session.
-     */
+
     public static Result logout() {
         session().clear();
-        flash("success", "You've been logged out");
+        flash("success", "Vous êtes déconnécté !!!");
         return redirect(
             routes.Application.login()
         );

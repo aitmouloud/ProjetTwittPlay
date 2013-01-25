@@ -140,4 +140,13 @@ public class UserAccount extends Model
 		return find.where().eq("id", id).findUnique();
 	}
 
+	/*ride
+	public String toString() {
+		return "UserAccount [id=" + id + ", mail=" + mail + ", nickname="
+				+ nickname + ", password=" + password + ", messages="
+				+ messages + "]";
+	}*/
+    
+    
+
 }

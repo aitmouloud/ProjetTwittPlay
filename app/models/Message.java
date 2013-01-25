@@ -1,12 +1,15 @@
 package models;
 
 import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -24,8 +27,9 @@ public class Message extends Model
 	@Required
 	private String label;
 
-
-	@Required 
+	@Temporal(TemporalType.DATE)
+	private Date date = new Date();
+	 
 	@ManyToOne
 	private UserAccount user;
 
@@ -49,6 +53,14 @@ public class Message extends Model
 		label = _label ;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
 	public UserAccount getUser()
 	{
 		return user ;
@@ -75,6 +87,15 @@ public class Message extends Model
 	{
 		find.ref(id).delete();
 	}
+
+
+
+	/*@Override
+	public String toString() {
+		return "Message [id=" + id + ", label=" + label + ", user=" + user
+				+ "]";
+	}*/
+	
 	
 	
 }

@@ -9,6 +9,7 @@ GET      /                 controllers.Application.login()
 # Messages
 GET 	/messages          		   controllers.Application.messages()
 GET     /messages/:id/list         controllers.Application.findMessageById(id: Long)
+GET 	/mesmessages          	   controllers.Application.mesmessages()
 POST    /messages                  controllers.Application.newMessage()
 POST    /messages/:id/delete       controllers.Application.deleteMessage(id: Long)
 
